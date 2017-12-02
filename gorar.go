@@ -11,7 +11,8 @@ import (
 	"strings"
 )
 
-// extract a rar file and save content into a bok directory
+// Extract rar/zip files.
+//See README for example's.
 
 func SayHello(word string) string {
 	fmt.Println("hello world!")
