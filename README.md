@@ -14,6 +14,8 @@ go get -v https://github.com/jagadeesh-kotra/gorar/
 ```go
 RarExtractor("Unrarme.rar", "./")
 ```
+**Multi Archive RAR is supported.**(Do not itirate,only pass first file)
+
 
 ## Extract Zip
 
