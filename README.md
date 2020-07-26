@@ -5,7 +5,7 @@ Extract rar/zip files in Go.
 # Install
 
 ```
-go get -v https://github.com/jagadeesh-kotra/gorar/
+go get -v https://github.com/jkotra/gorar/
 ```
 
 # Usage
@@ -24,11 +24,13 @@ RarExtractor("Unrarme.rar", "./")
 ZipExtractor("Unzipme.zip","./")
 ```
 
-## Credits
+---
 
-mholt/archiver - Error handling (Thx!)
+### Credits
 
-nwaples/rardecode - rar decoding library (Thx!)
+[mholt/archiver](https://github.com/mholt/archiver) - error handling.
+
+[nwaples/rardecode](https://github.com/nwaples/rardecode) - `rar` decoding library.
 
 
 

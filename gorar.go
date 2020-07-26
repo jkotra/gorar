@@ -11,14 +11,10 @@ import (
 	"strings"
 )
 
-// Extract rar/zip files.
-//See README for example's.
+//VERSION 0.1.2
+const VERSION = "0.1.2"
 
-func SayHello(word string) string {
-	fmt.Println("hello world!")
-	return "hello"
-}
-
+//RarExtractor ..
 func RarExtractor(path string, destination string) error {
 
 	rr, err := rardecode.OpenReader(path, "")
@@ -57,6 +53,7 @@ func RarExtractor(path string, destination string) error {
 	return nil
 }
 
+//ZipExtractor ..
 func ZipExtractor(source string, destination string) error {
 
 	r, err := zip.OpenReader(source)
@@ -78,6 +75,7 @@ func unzipAll(r *zip.Reader, destination string) error {
 	return nil
 }
 
+
 func unzipFile(zf *zip.File, destination string) error {
 	if strings.HasSuffix(zf.Name, "/") {
 		return mkdir(filepath.Join(destination, zf.Name))
@@ -92,6 +90,7 @@ func unzipFile(zf *zip.File, destination string) error {
 	return writeNewFile(filepath.Join(destination, zf.Name), rc, zf.FileInfo().Mode())
 }
 
+
 func mkdir(dirPath string) error {
 	err := os.MkdirAll(dirPath, 0755)
 	if err != nil {
@@ -99,6 +98,7 @@ func mkdir(dirPath string) error {
 	}
 	return nil
 }
+
 
 func writeNewFile(fpath string, in io.Reader, fm os.FileMode) error {
 	err := os.MkdirAll(filepath.Dir(fpath), 0755)
