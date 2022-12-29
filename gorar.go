@@ -1,7 +1,8 @@
-package gorar
+package main
 
 import (
 	"fmt"
+	"flag"
 	"io"
 	"os"
 	"path/filepath"
@@ -11,8 +12,8 @@ import (
 	"strings"
 )
 
-//VERSION 0.1.2
-const VERSION = "0.1.2"
+//VERSION 0.2.0
+const VERSION = "0.2.0"
 
 //RarExtractor ..
 func RarExtractor(path string, destination string) error {
@@ -122,4 +123,32 @@ func writeNewFile(fpath string, in io.Reader, fm os.FileMode) error {
 		return fmt.Errorf("%s: writing file: %v", fpath, err)
 	}
 	return nil
+}
+
+func main() {
+	i := flag.String("i", "", "path to rar file")
+	o := flag.String("o", "", "destination path")
+	flag.Parse()
+
+	if *i == "" {
+		fmt.Println("path is required")
+		os.Exit(1)
+	}
+
+	if *o == "" {
+		fmt.Println("destination is required")
+		os.Exit(1)
+	}
+
+	err := RarExtractor(*i, *o)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	//display help if no arguments are passed
+	if len(os.Args) == 1 {
+		fmt.Println("Usage: gorar -i <path to file> -o <destination path>")
+		os.Exit(1)
+	}
 }
